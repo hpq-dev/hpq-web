@@ -8,10 +8,12 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "build-css": "tailwindcss build src/app/index.css"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "framer-motion": "^10.16.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "redux": "^4.2.1"
