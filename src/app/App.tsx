@@ -2,6 +2,7 @@ import Astronaut from "@/components/astronaut";
 import Layout from "@/components/layout";
 import Scroll, { ScrollLayer } from "@/components/scroll";
 import soundEffect from "./soundEffect";
+import Loading from "@/components/loading";
 
 const App = () => {
     soundEffect()
@@ -20,6 +21,7 @@ const App = () => {
                 />
             </div>
         </Scroll>
+        <Loading />
     </ScrollLayer>
 };
 

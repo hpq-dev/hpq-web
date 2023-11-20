@@ -1,3 +1,4 @@
+import Links from "./links"
 import Nav from "./nav"
 
 
@@ -13,6 +14,7 @@ const Layout = () => {
             alt="logo"
         />
         <Nav />
+        <Links />
     </div>
 }
 
