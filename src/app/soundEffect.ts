@@ -17,8 +17,6 @@ const soundEffect = () => {
 
         const clicks = document.querySelectorAll('.click')
 
-        console.log(clicks)
-
         const hoverHandler = () => {
             setHoverID(prev => {
                 new Audio([
