@@ -9,9 +9,9 @@ const Links = () => {
     const progress = useProcentage(y, maxY);
     return <div className="fixed bottom-10 right-10 w-fit">
         <div className="flex text-[black] font-pain text-[15px] gap-6">
-            <a href="#">Instagram</a>
-            <a href="#">Github</a>
-            <a href="#">Linkdin</a>
+            <a href="#" className="click hover">Instagram</a>
+            <a href="#" className="click  hover">Github</a>
+            <a href="#" className="click hover">Linkdin</a>
         </div>
         <div className="relative w-full h-2 bg-[#0000002B] rounded-full mt-2">
             <motion.div
