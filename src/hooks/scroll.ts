@@ -10,12 +10,7 @@ type props = {
     maxX: number
     maxY: number
 }
-
-type scrollProps = {
-    value: props
-};
-
-const initialState: scrollProps = {
+const initialState: { value: props } = {
     value: {
         x: 0,
         y: 0,

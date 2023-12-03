@@ -6,7 +6,7 @@ import { useProcentage } from "@/util"
 const Links = () => {
     const { y, maxY } = useSelector((state: RootState) => state.scroll.value)
 
-    return <div className="fixed bottom-10 right-10 w-fit">
+    return <div className="fixed bottom-10 right-10 w-fit mix-blend-difference">
         <div className="flex text-[black] font-pain text-[15px] gap-6">
             <a href="#" className="click hover">Instagram</a>
             <a href="#" className="click  hover">Github</a>

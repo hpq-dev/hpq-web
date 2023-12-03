@@ -7,7 +7,6 @@ interface colorProps {
 }
 
 interface backgroundProps {
-    backgroundColor: string
     colors: colorProps[]
 }
 
@@ -17,7 +16,7 @@ interface initialStateProps {
 
 const initialState = {
     value: {
-        backgroundColor: '#fff'
+        colors: []
     }
 } as initialStateProps
 
@@ -25,14 +24,16 @@ const sliceBackground = createSlice({
     name: 'background',
     initialState,
     reducers: {
-        setBackground(state, action: PayloadAction<string>) {
-            state.value.backgroundColor = action.payload
-        },
         setColor(state, action: PayloadAction<colorProps>) {
             state.value.colors.push(action.payload)
+        },
+        removeColor(state, action: PayloadAction<number>) {
+            state.value.colors = state.value.colors.filter(
+                ({ pos }) => pos !== action.payload
+            )
         }
     }
 })
 
-export const { setBackground } = sliceBackground.actions
+export const { setColor, removeColor } = sliceBackground.actions
 export default sliceBackground.reducer
