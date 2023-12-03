@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import useMouseClick from './click'
 
 const useMouse = (): [number, number] => {
     const [pos, setPos] = useState<[number, number]>([0, 0])
@@ -15,4 +16,8 @@ const useMouse = (): [number, number] => {
     return pos
 }
 
-export default useMouse
+
+export {
+    useMouse,
+    useMouseClick
+}

@@ -9,8 +9,8 @@ const Background = () => {
     const { colors } = useSelector((state: RootState) => state.background.value)
 
     useEffect(() => {
-        colors.forEach(({pos, color}) => {
-            if(y < pos - (window.innerHeight / 2))
+        colors.forEach(({ pos, color }) => {
+            if (y < pos - (window.innerHeight / 2))
                 return
 
             setBackground(color)
@@ -18,7 +18,7 @@ const Background = () => {
     }, [y, colors])
 
     return <div
-        className="fixed w-full h-full top-0 left-0 z-[-1] transition-all duration-1000"
+        className="fixed w-full h-full top-0 left-0 z-[-1] transition-[background] duration-1000"
         style={{
             background
         }}
@@ -30,7 +30,9 @@ interface setBackgroundProps {
     color: string
 }
 
-export const SetBackground = ({ children, color }: setBackgroundProps) => {
+export const SetBackground = ({
+    children, color
+}: setBackgroundProps) => {
     const ref = useRef<HTMLDivElement | null>(null)
     const dispatch = useDispatch()
 

@@ -1,15 +1,15 @@
 
-import Layout from "@/components/layout";
+import Layout from "@/app/layout";
 import Scroll, { ScrollLayer } from "@/components/scroll";
 import soundEffect from "./soundEffect";
-import Loading from "@/components/loading";
+import Loading from "@/app/loading";
 
 import { setValue } from "@/hooks/scroll";
 import { useDispatch } from "react-redux";
+import Background from "@/app/background";
 
 import Home from '@/pages/home'
-import About from "@/pages/about";
-import Background from "@/components/background";
+import Cursor from "@/components/cursor";
 
 const App = () => {
     soundEffect()
@@ -18,6 +18,7 @@ const App = () => {
 
     return <ScrollLayer>
         <Background />
+        <Cursor />
         <Layout />
         <Scroll
             touch={true}
@@ -25,7 +26,6 @@ const App = () => {
             onPos={(props) => dispatch(setValue(props))}
         >
             <Home />
-            <About />
         </Scroll>
         <Loading />
     </ScrollLayer>

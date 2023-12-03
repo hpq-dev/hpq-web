@@ -1,22 +1,20 @@
-import { useSelector, useDispatch } from "react-redux"
-import { RootState } from "@/hooks"
 import { motion } from 'framer-motion'
-import { useProcentage } from "@/util"
+import { getScrollProgress } from "@/hooks/scroll"
 
 const Links = () => {
-    const { y, maxY } = useSelector((state: RootState) => state.scroll.value)
+    const progress = getScrollProgress()
 
     return <div className="fixed bottom-10 right-10 w-fit mix-blend-difference">
-        <div className="flex text-[black] font-pain text-[15px] gap-6">
+        <div className="flex text-white font-pain text-[15px] gap-6">
             <a href="#" className="click hover">Instagram</a>
             <a href="#" className="click  hover">Github</a>
             <a href="#" className="click hover">Linkdin</a>
         </div>
-        <div className="relative w-full h-2 bg-[#0000002B] rounded-full mt-2">
+        <div className="relative w-full h-2 bg-[#ffffff2B] rounded-full mt-2">
             <motion.div
-                className="absolute left-0 bg-[black] h-full rounded-full"
+                className="absolute left-0 bg-white h-full rounded-full"
                 animate={{
-                    width: useProcentage(y, maxY - window.innerHeight) + '%'
+                    width: progress + '%'
                 }}
                 transition={{
                     duration: .1

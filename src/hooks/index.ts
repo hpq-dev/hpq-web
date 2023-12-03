@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import scroll from './scroll'
 import background from "./background";
+import mouse from "./mouse";
 
 const store = configureStore({
     reducer: {
         scroll,
-        background
+        background,
+        mouse
     }
 })
 

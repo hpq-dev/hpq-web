@@ -1,24 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-
 interface colorProps {
     pos: number
     color: string
 }
-
 interface backgroundProps {
     colors: colorProps[]
-}
-
-interface initialStateProps {
-    value: backgroundProps
 }
 
 const initialState = {
     value: {
         colors: []
     }
-} as initialStateProps
+} as { value: backgroundProps }
 
 const sliceBackground = createSlice({
     name: 'background',

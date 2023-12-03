@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import useMouse from "@/util/mouse"
+import {useMouse} from "@/util/mouse"
 import useWindow from "@/util/window"
 import { getPosition } from '@/util/parallax'
 import { motion } from 'framer-motion'
