@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import scroll from './scroll'
+import background from "./background";
 
 const store = configureStore({
     reducer: {
-        scroll
+        scroll,
+        background
     }
 })
 

@@ -6,7 +6,6 @@ import { useProcentage } from "@/util"
 const Links = () => {
     const { y, maxY } = useSelector((state: RootState) => state.scroll.value)
 
-    const progress = useProcentage(y, maxY);
     return <div className="fixed bottom-10 right-10 w-fit">
         <div className="flex text-[black] font-pain text-[15px] gap-6">
             <a href="#" className="click hover">Instagram</a>
@@ -17,7 +16,7 @@ const Links = () => {
             <motion.div
                 className="absolute left-0 bg-[black] h-full rounded-full"
                 animate={{
-                    width: (progress > 0 ? progress : 0) + '%'
+                    width: useProcentage(y, maxY - window.innerHeight) + '%'
                 }}
                 transition={{
                     duration: .1
