@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/hooks'
 import { DEFAULT_CURSOR_SIZE, setMouse } from '@/hooks/mouse'
 
+
 const Cursor = () => {
     const [mouseX, mouseY] = useMouse()
     const [leftClick] = useMouseClick()
@@ -16,7 +17,7 @@ const Cursor = () => {
     } = useSelector((state: RootState) => state.mouse.value)
 
     return <motion.div
-        className="fixed w-fit z-10 pointer-events-none flex items-center mix-blend-difference"
+        className="fixed w-fit z-10 pointer-events-none flex items-center mix-blend-difference max-md:opacity-0"
         animate={{
             translateX: mouseX - (size / 2),
             translateY: mouseY - (size / 2),

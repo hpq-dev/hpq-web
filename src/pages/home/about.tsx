@@ -8,10 +8,9 @@ const About = () => {
     return <div className='w-full pt-[40vh] pb-[10vh]'>
         <div className="w-fit m-auto">
             <div className="relative flex items-end gap-4">
-                <div className="absolute left-0 -translate-x-28 flex gap-4 items-center">
+                <div className="absolute left-0 -translate-x-28 flex gap-4 items-center" {...useCursorEvent('I am', 60)}>
                     <img
-                        className="rotate-[-15deg] w-20 h-auto border-2 border-white shadow-lg"
-                        {...useCursorEvent('I am', 60)}
+                        className="rotate-[-15deg] w-20 h-auto border-2 border-white shadow-lg pointer-events-none"
                         src="/profile.png"
                     />
                     <span className="font-pain">Full stack developer</span>
