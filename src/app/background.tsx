@@ -27,16 +27,32 @@ const Background = () => {
 
 interface setBackgroundProps {
     children: React.ReactNode
-    color: string
+    color?: string | null
+    onObserver?: () => void
 }
 
 export const SetBackground = ({
-    children, color
+    children, color = null, onObserver = () => { }
 }: setBackgroundProps) => {
+    const { y } = useSelector((state: RootState) => state.scroll.value)
+
     const ref = useRef<HTMLDivElement | null>(null)
     const dispatch = useDispatch()
 
     useEffect(() => {
+        const element = ref.current
+        if (!element) return
+
+        const { height, top } = element.getBoundingClientRect()
+        if (top < height / 2)
+             onObserver()
+
+    }, [y, ref])
+
+    useEffect(() => {
+        if (!color)
+            return
+
         const element = ref.current
         if (!element)
             return
@@ -51,7 +67,7 @@ export const SetBackground = ({
         return () => {
             dispatch(removeColor(y))
         }
-    }, [])
+    }, [color])
 
     return <div ref={ref}>
         {children}

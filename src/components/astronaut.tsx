@@ -7,18 +7,18 @@ import { useSelector } from 'react-redux'
 import { RootState } from '@/hooks'
 
 interface AstronautProps {
-    x: number
-    y: number
     distance?: number
 }
 
-export default function Astronaut({ x, y, distance = 1 }: AstronautProps) {
+export default function Astronaut({ distance = 1 }: AstronautProps) {
     const [show, setShow] = useState<boolean>(false)
 
     const [windowWidth, windowHeight] = useWindow()
     const [mouseX, mouseY] = useMouse()
 
     const scrollY: number = useSelector((state: RootState) => state.scroll.value.y)
+
+    const { x, y, scale, rotate} = useSelector((state: RootState) => state.astronaut.value)
 
     const left: number = (windowWidth * (x / 100))
     const top: number = scrollY + y
@@ -36,9 +36,9 @@ export default function Astronaut({ x, y, distance = 1 }: AstronautProps) {
         return null
 
     return <motion.div
-        className="fixed pointer-events-none transform -translate-x-1/2 -translate-y-1/2"
+        className="fixed pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-10"
         animate={{
-            left, top, translateX, translateY
+            left, top, translateX, translateY, scale, rotate
         }}
         transition={{
             type: 'spring',
@@ -46,6 +46,9 @@ export default function Astronaut({ x, y, distance = 1 }: AstronautProps) {
             damping: 30,
             mass: 1,
             top: {
+                duration: 1
+            },
+            left: {
                 duration: 1
             }
         }}
