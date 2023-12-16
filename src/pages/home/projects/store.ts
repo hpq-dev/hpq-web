@@ -4,7 +4,7 @@ interface props {
     src: string
 }
 
-const store = [
+const store: props[] = [
     {
         width: 300,
         height: 300,

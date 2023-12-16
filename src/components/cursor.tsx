@@ -16,6 +16,7 @@ const Cursor = () => {
         title
     } = useSelector((state: RootState) => state.mouse.value)
 
+    
     return <motion.div
         className="fixed w-fit z-10 pointer-events-none flex items-center mix-blend-difference max-md:opacity-0"
         animate={{

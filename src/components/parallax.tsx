@@ -15,6 +15,7 @@ const ImagesParallax = () => {
 
     const [images, setImages] = useState<imageProps[]>([])
 
+    
     useEffect(() => {
         setInterval(() => {
             setImages(prev => {

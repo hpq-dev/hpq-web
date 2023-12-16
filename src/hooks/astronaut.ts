@@ -5,12 +5,15 @@ interface props {
     x: number
     y: number
     scale: number
+    rotate: number
 }
 
 const initialState = {
     value: {
         x: 50,
-        y: 300
+        y: 300,
+        scale: 1,
+        rotate: 0
     }
 } as { value: props }
 

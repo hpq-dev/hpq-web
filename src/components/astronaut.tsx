@@ -23,6 +23,7 @@ export default function Astronaut({ distance = 1 }: AstronautProps) {
     const left: number = (windowWidth * (x / 100))
     const top: number = scrollY + y
 
+    
     const translateX: number = getPosition(mouseX, windowWidth, distance)
     const translateY: number = getPosition(mouseY, windowHeight, distance)
 

@@ -1,6 +1,6 @@
 
 import Layout from "@/app/layout";
-import Scroll, { ScrollLayer } from "@/components/scroll";
+import Scroll, { ScrollLayer } from "@/components/customScroll";
 import soundEffect from "./soundEffect";
 import Loading from "@/app/loading";
 
