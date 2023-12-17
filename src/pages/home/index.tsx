@@ -24,7 +24,7 @@ const Home = () => {
         >
             <div style={{ height: '100vh' }}>
                 <Astronaut />
-                <div className="relative text-[150px] font-pain w-full text-center pt-56 max-md:text-[80px]">
+                <div className="relative text-[150px] font-pain w-full text-center pt-56 max-md:text-[80px] max-md:pt-40">
                     Hello there!<br />
                     I am web developer
                 </div>

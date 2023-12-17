@@ -37,9 +37,9 @@ export default function Astronaut({ distance = 1 }: AstronautProps) {
         return null
 
     return <motion.div
-        className="fixed pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-10"
+        className="fixed pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-10 w-fit h-fit"
         animate={{
-            left, top, translateX, translateY, scale, rotate
+            left, top, translateX, translateY, scale, rotate, opacity: window.innerWidth > 700 ? 1 : 0
         }}
         transition={{
             type: 'spring',
@@ -55,6 +55,7 @@ export default function Astronaut({ distance = 1 }: AstronautProps) {
         }}
     >
         <img
+            className='relative h-[70vh]'
             src={'/astronaut.svg'}
             alt="astronaut"
         />

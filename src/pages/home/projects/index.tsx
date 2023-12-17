@@ -27,44 +27,47 @@ const Projects = () => {
             rotate: 20
         }))}
     >
-        <div className="w-full h-[100vh] flex items-center">
-            <div className="text-white w-[40vw] text-center absolute left-0" style={{
-                opacity: 1 - (progress[0] / (innerWidth * .2)),
-                transform: `scale(${1 - (progress[0] / (innerWidth * .6))})`
-            }}>
-                <h1 className="font-bold mb-[1vh]">NEXT FEATURE</h1>
-                <p className="relative text-justify w-[24vh] m-auto">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                </p>
-            </div>
-            <Scroll
-                scrollbar={false}
-                touch={true}
-                onPos={({ x, maxX }) => setProgress([x, maxX])}
-            >
-                <div className="h-[100vh] w-fit flex items-center pl-[40vw]">
-                    <div className="flex flex-col flex-wrap h-full justify-center gap-[4vh]">
-                        {store.map((props, i) => {
-                            const translateX: string = i * (procent * (!(i % 2) ? .15 : .2)) + '%'
-
-                            return <motion.div
-                                key={i}
-                                animate={{
-                                    translateX
-                                }}
-                                transition={{
-                                    duration: .3
-                                }}
-                            >
-                                <ItemProject
-                                    {...props}
-                                />
-                            </motion.div>
-                        })}
-                    </div>
+        <div className="w-full overflow-hidden h-auto">
+            <div className="relative w-full h-[100vh] flex items-center">
+                <div className="text-white w-[40vw] text-center absolute left-0 max-md:left-4" style={{
+                    opacity: 1 - (progress[0] / (innerWidth * .2)),
+                    transform: `scale(${1 - (progress[0] / (innerWidth * .6))})`
+                }}>
+                    <h1 className="font-bold mb-[1vh]">NEXT FEATURE</h1>
+                    <p className="relative text-justify w-[24vh] m-auto">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                    </p>
                 </div>
-            </Scroll>
+                <Scroll
+                    scrollbar={false}
+                    touch={true}
+                    onPos={({ x, maxX }) => setProgress([x, maxX])}
+                >
+                    <div className="relative h-[100vh] w-fit flex items-center pl-[40vw] max-md:pl-[60vw]">
+                        <div className="relative flex flex-col flex-wrap h-full justify-center gap-[4vh]">
+                            {store.map((props, i) => {
+                                const translateX: string = i * (procent * (!(i % 2) ? .15 : .2)) + '%'
+
+                                return <motion.div
+                                    key={i}
+                                    animate={window.innerWidth > 700 && {
+                                        translateX
+                                    } || {}}
+                                    transition={{
+                                        duration: .3
+                                    }}
+                                >
+                                    <ItemProject
+                                        {...props}
+                                    />
+                                </motion.div>
+                            })}
+                        </div>
+                    </div>
+                </Scroll>
+            </div>
         </div>
+
     </SetBackground>
 }
 

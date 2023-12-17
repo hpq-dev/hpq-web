@@ -17,17 +17,19 @@ const App = () => {
     const dispatch = useDispatch()
 
     return <ScrollLayer>
-        <Background />
-        <Cursor />
-        <Layout />
-        <Scroll
-            touch={true}
-            scrollbar={false}
-            onPos={(props) => dispatch(setValue(props))}
-        >
-            <Home />
-        </Scroll>
-        <Loading />
+        <div className="w-full h-[100vh] fixed left-0 top-0 overflow-hidden">
+            <Background />
+            <Cursor />
+            <Layout />
+            <Scroll
+                touch={true}
+                scrollbar={false}
+                onPos={(props) => dispatch(setValue(props))}
+            >
+                <Home />
+            </Scroll>
+            <Loading />
+        </div>
     </ScrollLayer>
 };
 

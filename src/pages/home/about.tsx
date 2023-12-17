@@ -17,20 +17,22 @@ const About = () => {
             rotate: -35
         }))}
     >
-        <div className='w-full pt-[40vh] pb-[10vh]'>
-            <div className="w-fit m-auto">
-                <div className="relative flex items-end gap-4">
-                    <div className="absolute left-0 -translate-x-28 flex gap-4 items-center" {...useCursorEvent('I am', 60)}>
-                        <img
-                            className="rotate-[-15deg] w-20 h-auto border-2 border-white shadow-lg pointer-events-none"
-                            src="/profile.png"
-                        />
-                        <span className="font-pain">Full stack developer</span>
+        <div className='w-full pt-[40vh] pb-[10vh] relative'>
+            <div className="w-fit m-auto relative">
+                <div className="relative flex items-end gap-4 w-full max-md:flex-wrap max-md:mb-10">
+                    <div className="text-black font-bold uppercase text-5xl relative m-auto">
+                        <div className="absolute left-0 -translate-x-28 flex gap-4 items-center top-[-60px] max-md:top-[-120px] max-sm:left-[30%]" {...useCursorEvent('I am', 60)}>
+                            <img
+                                className="rotate-[-15deg] w-20 h-auto border-2 border-white shadow-lg pointer-events-none max-md:ml-24"
+                                src="/profile.png"
+                            />
+                            <span className="font-pain text-sm">Full stack developer</span>
+                        </div>
+                        Lungu Ionut
                     </div>
-                    <h1 className="text-black font-bold uppercase text-5xl">Lungu Ionut</h1>
-                    <h3 className="bg-gradient-to-r from-[#00000080] to-transparent inline-block text-transparent bg-clip-text text-3xl font-[500]">of 2 years experience</h3>
+                    <h3 className="relative bg-gradient-to-r from-[#00000080] to-transparent inline-block text-transparent bg-clip-text text-3xl font-[500] w-fit m-auto">of 2 years experience</h3>
                 </div>
-                <div className="relative w-[660px] text-justify mt-6 text-xl font-[500] text-[#00000060]">
+                <div className="relative w-[660px] max-md:w-[80%] max-w-full max-md:m-auto text-justify mt-6 text-xl font-[500] text-[#00000060]">
                     <p
                         {...useCursorEvent('- 07 2023', 30)}
                     >

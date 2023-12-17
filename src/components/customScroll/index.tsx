@@ -53,7 +53,7 @@ function CoreScroll({
     touch = false,
     scroll = true,
     scrollbar = true,
-    onPos = () => {}
+    onPos = () => { }
 }: ScrollProps) {
     const [props, setProps] = useState<ScrollDataProps>({
         x: 0,
@@ -158,16 +158,32 @@ export default function Scroll({
     touch = false,
     scroll = true,
     scrollbar = true,
-    onPos = () => {}
+    onPos = () => { }
 }: ScrollProps) {
-    const { width } = useResizeWindow()
-
-    return width > 550 ? <CoreScroll
+    return window.innerWidth > 700 ? <CoreScroll
         touch={touch}
         scroll={scroll}
         scrollbar={scrollbar}
         onPos={onPos}
-    >{children}</CoreScroll> : children
+    >{children}</CoreScroll> : <div
+        id='normal_scroll'
+        style={{
+            width: '100%',
+            height: '100vh',
+            overflow: 'auto'
+        }}
+        onScroll={(e: any) => {
+            const target: HTMLDivElement = e.target
+            onPos({
+                x: target.scrollLeft,
+                y: target.scrollTop,
+                maxX: target.scrollWidth,
+                maxY: target.scrollHeight
+            })
+        }}
+    >
+        {children}
+    </div>
 }
 
 interface ScrollLayerProps {
