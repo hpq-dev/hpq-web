@@ -10,12 +10,20 @@ type props = {
     maxX: number
     maxY: number
 }
-const initialState: { value: props } = {
+
+interface defaultProps extends props {
+    setX: number
+    setY: number
+}
+
+const initialState: { value: defaultProps } = {
     value: {
         x: 0,
         y: 0,
         maxX: 0,
-        maxY: 0
+        maxY: 0,
+        setX: 0,
+        setY: 0
     }
 };
 
@@ -24,7 +32,15 @@ const scrollSlice = createSlice({
     initialState,
     reducers: {
         setValue(state, action: PayloadAction<props>) {
-            state.value = action.payload
+            state.value = {
+                ...state.value,
+                ...action.payload
+            }
+        },
+        setScroll(state, action: PayloadAction<[number, number]>) {
+            const [x, y] = action.payload
+            state.value.setX = x
+            state.value.setY = y
         }
     }
 });
@@ -36,5 +52,5 @@ export const getScrollProgress = () => {
     return progress
 }
 
-export const { setValue } = scrollSlice.actions;
+export const { setValue, setScroll } = scrollSlice.actions;
 export default scrollSlice.reducer;

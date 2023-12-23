@@ -30,7 +30,7 @@ const Nav = ({ show }: props) => {
                 translateY: 0
             }}
         >
-            <div className="fixed top-16 right-40 flex gap-4 item-center z-[1] max-md:top-4 max-md:right-28">
+            <div className="fixed top-16 right-40 flex gap-4 item-center z-[2] max-md:top-4 max-md:right-28">
                 <motion.div
                     className="bg-[#F2F2F2] rounded-xl w-20 h-16 click hover"
                     whileTap={{
@@ -113,7 +113,7 @@ const Audio = ({ status = false, count = 6, onClick }: AudioProps) => {
     }, [status])
 
     return <motion.div
-        className='fixed top-16 z-[1] right-12 w-20 h-14 flex gap-1.5 items-center cursor-pointer click hover mix-blend-difference max-md:top-4 max-md:right-2'
+        className='fixed top-16 z-[2] right-12 w-20 h-14 flex gap-1.5 items-center cursor-pointer click hover mix-blend-difference max-md:top-4 max-md:right-2'
         onClick={onClick}
         whileTap={{
             scale: .8,

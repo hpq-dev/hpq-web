@@ -43,7 +43,7 @@ const soundEffect = () => {
         }
 
         clicks.forEach(element =>
-            element.addEventListener('mousedown', clickHandler)
+            element.addEventListener('click', clickHandler)
         )
         hovers.forEach(element =>
             element.addEventListener('mouseenter', hoverHandler)
@@ -53,7 +53,7 @@ const soundEffect = () => {
                 elements.removeEventListener('mouseenter', hoverHandler)
             )
             clicks.forEach(elements =>
-                elements.removeEventListener('mousedown', clickHandler)
+                elements.removeEventListener('click', clickHandler)
             )
         }
     }, [])

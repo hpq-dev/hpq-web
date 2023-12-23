@@ -4,7 +4,7 @@ import { getScrollProgress } from "@/hooks/scroll"
 const Links = () => {
     const progress = getScrollProgress()
 
-    return <div className="fixed bottom-10 right-10 w-fit z-10 mix-blend-difference max-md:right-0 max-md:bottom-0 max-md:w-full">
+    return <div className="fixed bottom-10 right-10 w-fit z-[1] mix-blend-difference max-md:right-0 max-md:bottom-0 max-md:w-full">
         <div className="flex text-white font-pain text-[15px] gap-6 max-md:justify-around max-md:text-2xl">
             <a href="#" className="click hover">Instagram</a>
             <a href="#" className="click  hover">Github</a>

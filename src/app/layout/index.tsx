@@ -1,4 +1,4 @@
-import { EventHandler, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Links from "./links"
 import Nav from "./nav"
 import useWindow from "@/util/window"

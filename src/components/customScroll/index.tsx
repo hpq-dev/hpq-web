@@ -11,8 +11,7 @@ import {
     ScrollContext,
     ScrollDataProps,
     ScrollLayerDataProps,
-    UseDirection,
-    useResizeWindow
+    UseDirection
 } from "./core"
 
 import PageSizeCore from './pageSize'
@@ -46,14 +45,16 @@ type ScrollProps = {
         y: number,
         maxX: number,
         maxY: number
-    }) => void
+    }) => void,
+    pos?: [number, number]
 }
 function CoreScroll({
     children,
     touch = false,
     scroll = true,
     scrollbar = true,
-    onPos = () => { }
+    onPos = () => { },
+    pos = [0,0]
 }: ScrollProps) {
     const [props, setProps] = useState<ScrollDataProps>({
         x: 0,
@@ -76,6 +77,18 @@ function CoreScroll({
     const classNameID: string = useContext(LayerScrollContext)?.value.id
     const { value, setValue } = useContext(LayerScrollContext)
     const { direction } = value
+
+    useEffect(() => {
+        const [x, y] = pos
+
+        setProps(prev => {
+            if (x) prev.x = x
+
+            else if(y) prev.y = y
+
+            return {...prev}
+        })
+    }, [pos])
 
     useEffect(() => {
         onPos({
@@ -158,9 +171,12 @@ export default function Scroll({
     touch = false,
     scroll = true,
     scrollbar = true,
-    onPos = () => { }
+    onPos = () => { },
+    pos = [0, 0]
 }: ScrollProps) {
+    
     return window.innerWidth > 700 ? <CoreScroll
+        pos={pos}
         touch={touch}
         scroll={scroll}
         scrollbar={scrollbar}

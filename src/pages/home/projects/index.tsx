@@ -1,22 +1,48 @@
 import { SetBackground } from "@/app/background"
 import ItemProject from "./item"
 import Scroll from "@/components/customScroll"
-import store from "./store"
-import { useDispatch } from "react-redux"
+import store from "../../../data/projects"
+import { useDispatch, useSelector } from "react-redux"
 import { setAstronaut } from "@/hooks/astronaut"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import useWindow from "@/util/window"
 import { motion } from 'framer-motion'
 import { useProcentage } from "@/util"
 
-const Projects = () => {
-    const dispatch = useDispatch()
+import { Outlet, useNavigate, useParams } from "react-router-dom"
+import { setScroll } from "@/hooks/scroll"
+import { RootState } from "@/hooks"
 
-    const [progress, setProgress] = useState<[number, number]>([0, 0])
+const Projects = () => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [innerWidth] = useWindow()
+    const { projectID } = useParams()
+
+    const { y } = useSelector((state: RootState) => state.scroll.value)
+
+    const ref = useRef<HTMLDivElement | null>(null)
+    const [progress, setProgress] = useState<[number, number]>([0, 0])
 
     let procent: number = (40 - useProcentage(progress[0], progress[1]))
     if (procent < 0) procent = -procent
+
+
+    useEffect(() => {
+        if (projectID == undefined) {
+            dispatch(setScroll([0,0]))
+            return
+        }
+
+        const parent = ref.current
+
+        if (!parent)
+            return
+
+        const { top } = parent.getBoundingClientRect()
+
+        dispatch(setScroll([0, y + top + 10]))
+    }, [ref, projectID])
 
     return <SetBackground
         color="#000"
@@ -27,7 +53,10 @@ const Projects = () => {
             rotate: 20
         }))}
     >
-        <div className="w-full overflow-hidden h-auto">
+        <div
+            className="relative w-full overflow-hidden h-auto"
+            ref={ref}
+        >
             <div className="relative w-full h-[100vh] flex items-center">
                 <div className="text-white w-[40vw] text-center absolute left-0 max-md:left-4" style={{
                     opacity: 1 - (progress[0] / (innerWidth * .2)),
@@ -49,6 +78,7 @@ const Projects = () => {
                                 const translateX: string = i * (procent * (!(i % 2) ? .15 : .2)) + '%'
 
                                 return <motion.div
+                                    className="hover click"
                                     key={i}
                                     animate={window.innerWidth > 700 && {
                                         translateX
@@ -56,7 +86,9 @@ const Projects = () => {
                                     transition={{
                                         duration: .3
                                     }}
+                                    onClick={() => navigate(`project/${i}`)}
                                 >
+
                                     <ItemProject
                                         {...props}
                                     />
@@ -66,8 +98,8 @@ const Projects = () => {
                     </div>
                 </Scroll>
             </div>
+            <Outlet />
         </div>
-
     </SetBackground>
 }
 

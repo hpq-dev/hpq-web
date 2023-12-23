@@ -16,14 +16,14 @@ const Contact = () => {
         <div className="relative w-full flex h-fit justify-center items-center">
             <img
                 className="w-full h-auto absolute bottom-0 pointer-events-none object-cover z-[-1] max-md:h-[50vh] max-md:w-auto"
-                src="/contact.bg.png"
+                src="/contact.bg.webp"
                 alt="contact background"
             />
             <div className="relative mt-32">
                 <div className="flex gap-[2vh]">
                     <img
                         className="relative pointer-events-none max-md:hidden"
-                        src="/contact.profile.png"
+                        src="/contact.profile.webp"
                         alt="contact"
                     />
                     <div className="text-white max-md:w-[80%] m-auto max-md:mt-32">
