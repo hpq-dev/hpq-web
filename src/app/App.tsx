@@ -1,23 +1,28 @@
 
 import Layout from "@/app/layout";
+import Loading from "@/app/loading";
 import Scroll, { ScrollLayer } from "@/components/customScroll";
 import soundEffect from "./soundEffect";
-import Loading from "@/app/loading";
 
+import Background from "@/app/background";
 import { setValue } from "@/hooks/scroll";
 import { useDispatch, useSelector } from "react-redux";
-import Background from "@/app/background";
 
-import Home from '@/pages/home'
 import Cursor from "@/components/cursor";
 import Error from "@/pages/error";
+import Home from '@/pages/home';
 
+/**
+ * TODO: de pus la protofoliu 3d anim
+ * TODO: sa fie butoanele magnetice
+ */
+
+import { RootState } from "@/hooks";
+import Project from "@/pages/project";
 import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
-import Project from "@/pages/project";
-import { RootState } from "@/hooks";
 
 const router = createBrowserRouter([
     {
@@ -41,18 +46,28 @@ const App = () => {
     const { setX, setY } = useSelector((state: RootState) => state.scroll.value)
 
     return <ScrollLayer>
-        <div className="w-full h-[100vh] fixed left-0 top-0 overflow-hidden">
+        <div
+            className="w-full h-[100vh] fixed left-0 top-0 overflow-hidden bg-[#000]"
+        >
             <Background />
             <Cursor />
             <Layout />
-            <Scroll
-                touch={true}
-                scrollbar={false}
-                onPos={(props) => dispatch(setValue(props))}
-                pos={[setX, setY]}
+            <div
+                className="w-full h-full relative"
+                style={{
+                    mask: `linear-gradient(0deg, transparent, white 20%, white 80%, transparent)`,
+                    WebkitMask: `linear-gradient(0deg, transparent, white 20%, white 80%, transparent)`
+                }}
             >
-                <RouterProvider router={router} />
-            </Scroll>
+                <Scroll
+                    touch={true}
+                    scrollbar={false}
+                    onPos={(props) => dispatch(setValue(props))}
+                    pos={[setX, setY]}
+                >
+                    <RouterProvider router={router} />
+                </Scroll>
+            </div>
             <Loading />
         </div>
     </ScrollLayer>

@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
-import { useMouse } from "@/util/mouse"
-import useWindow from "@/util/window"
-import { getPosition } from '@/util/parallax'
-import { motion } from 'framer-motion'
-import { useSelector } from 'react-redux'
 import { RootState } from '@/hooks'
+import { useMouse } from "@/util/mouse"
+import { getPosition } from '@/util/parallax'
+import useWindow from "@/util/window"
+import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 interface AstronautProps {
     distance?: number
