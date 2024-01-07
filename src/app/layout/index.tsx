@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
-import Links from "./links"
-import Nav from "./nav"
 import useWindow from "@/util/window"
 import { motion } from 'framer-motion'
+import { memo, useEffect, useState } from "react"
+import Links from "./links"
+import Nav from "./nav"
 
-const Layout = () => {
+const Layout = memo(() => {
     const [show, setShow] = useState<boolean>(true)
 
     const [innerWidth] = useWindow()
@@ -57,6 +57,6 @@ const Layout = () => {
         <Nav show={show} />
         <Links />
     </>
-}
+})
 
 export default Layout

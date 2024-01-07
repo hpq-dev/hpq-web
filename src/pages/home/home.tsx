@@ -25,7 +25,7 @@ const Home = () => {
                     text='Hello there!\nI am web developer'
                     duration={5}
                     delay={2}
-                    appendDelay={3}
+                    appendDelay={2}
                 />
             </div>
         </div>

@@ -1,10 +1,10 @@
 
-import { motion } from 'framer-motion'
 import { useMouse, useMouseClick } from "@/util/mouse"
+import { motion } from 'framer-motion'
 
-import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/hooks'
 import { DEFAULT_CURSOR_SIZE, setMouse } from '@/hooks/mouse'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 const Cursor = () => {
@@ -19,12 +19,9 @@ const Cursor = () => {
     
     return <motion.div
         className="fixed w-fit z-10 pointer-events-none flex items-center mix-blend-difference max-md:opacity-0"
-        // animate={{
-        //     translateX: mouseX - (size / 2),
-        //     translateY: mouseY - (size / 2),
-        // }}
-        style={{
-            transform: `translate(${mouseX - (size / 2)}px, ${mouseY - (size / 2)}px)`
+        animate={{
+            translateX: mouseX - (size / 2),
+            translateY: mouseY - (size / 2),
         }}
     >
         <motion.div

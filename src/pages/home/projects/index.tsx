@@ -1,19 +1,22 @@
 import { SetBackground } from "@/app/background"
-import ItemProject from "./item"
 import Scroll from "@/components/customScroll"
-import store from "../../../data/projects"
-import { useDispatch, useSelector } from "react-redux"
 import { setAstronaut } from "@/hooks/astronaut"
-import { useEffect, useRef, useState } from "react"
+import { useProcentage } from "@/util"
 import useWindow from "@/util/window"
 import { motion } from 'framer-motion'
-import { useProcentage } from "@/util"
+import { useEffect, useRef, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import store from "../../../data/projects"
+import ItemProject from "./item"
 
-import { Outlet, useNavigate, useParams } from "react-router-dom"
-import { setScroll } from "@/hooks/scroll"
+import { useObserverOfScroll } from "@/components/customScroll/utils"
 import { RootState } from "@/hooks"
+import { setScroll } from "@/hooks/scroll"
+import { Outlet, useNavigate, useParams } from "react-router-dom"
 
 const Projects = () => {
+    const [observerRef, inView] = useObserverOfScroll({ range: .5 })
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [innerWidth] = useWindow()
@@ -30,7 +33,7 @@ const Projects = () => {
 
     useEffect(() => {
         if (projectID == undefined) {
-            dispatch(setScroll([0,0]))
+            dispatch(setScroll([0, 0]))
             return
         }
 
@@ -54,7 +57,7 @@ const Projects = () => {
         }))}
     >
         <div
-            className="relative w-full overflow-hidden h-auto"
+            className="relative w-full overflow-hidden h-auto py-[20vh]"
             ref={ref}
         >
             <div className="relative w-full h-[100vh] flex items-center">
@@ -67,36 +70,50 @@ const Projects = () => {
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
                     </p>
                 </div>
-                <Scroll
-                    scrollbar={false}
-                    touch={true}
-                    onPos={({ x, maxX }) => setProgress([x, maxX])}
+                <motion.div
+                    ref={observerRef}
+                    animate={!inView ? {
+                        opacity: 0,
+                        translateX: '20vw'
+                    } : {
+                        opacity: 1,
+                        translateX: '0vw'
+                    }}
+                    transition={{
+                        duration: .5
+                    }}
                 >
-                    <div className="relative h-[100vh] w-fit flex items-center pl-[40vw] max-md:pl-[60vw]">
-                        <div className="relative flex flex-col flex-wrap h-full justify-center gap-[4vh]">
-                            {store.map((props, i) => {
-                                const translateX: string = i * (procent * (!(i % 2) ? .15 : .2)) + '%'
+                    <Scroll
+                        scrollbar={false}
+                        touch={true}
+                        onPos={({ x, maxX }) => setProgress([x, maxX])}
+                    >
+                        <div className="relative h-[100vh] w-fit flex items-center pl-[40vw] max-md:pl-[60vw]">
+                            <div className="relative flex flex-col flex-wrap h-full justify-center gap-[4vh]">
+                                {store.map((props, i) => {
+                                    const translateX: string = i * (procent * (!(i % 2) ? .15 : .2)) + '%'
 
-                                return <motion.div
-                                    className="hover click"
-                                    key={i}
-                                    animate={window.innerWidth > 700 && {
-                                        translateX
-                                    } || {}}
-                                    transition={{
-                                        duration: .3
-                                    }}
-                                    onClick={() => navigate(`project/${i}`)}
-                                >
+                                    return <motion.div
+                                        className="hover click"
+                                        key={i}
+                                        animate={window.innerWidth > 700 && {
+                                            translateX
+                                        } || {}}
+                                        transition={{
+                                            duration: .3
+                                        }}
+                                        onClick={() => navigate(`project/${i}`)}
+                                    >
 
-                                    <ItemProject
-                                        {...props}
-                                    />
-                                </motion.div>
-                            })}
+                                        <ItemProject
+                                            {...props}
+                                        />
+                                    </motion.div>
+                                })}
+                            </div>
                         </div>
-                    </div>
-                </Scroll>
+                    </Scroll>
+                </motion.div>
             </div>
             <Outlet />
         </div>

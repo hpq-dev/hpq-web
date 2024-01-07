@@ -15,6 +15,7 @@ import Home from '@/pages/home';
 /**
  * TODO: de pus la protofoliu 3d anim
  * TODO: sa fie butoanele magnetice
+ * TODO: de facut deelay cand dai click pe un proiect
  */
 
 import { RootState } from "@/hooks";

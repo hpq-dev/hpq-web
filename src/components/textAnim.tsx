@@ -19,13 +19,14 @@ const AnimChar = ({ children, ind, duration, delay }: animProps) => {
 
     const chars = useMemo(() => children.split(''), [children])
 
-    return <span>
-        {chars.map((char, i) => <motion.span
+    return <div className="flex">
+        {chars.map((char, i) => <motion.p
             className="opacity-0"
             key={i}
             animate={{
                 opacity: [0, 1],
-                filter: [`blur(2vh)`, `blur(0vh)`]
+                filter: [`blur(2vh)`, `blur(0vh)`],
+                translateY: ['-5vh', '0vh']
             }}
             transition={{
                 duration: duration,
@@ -33,9 +34,8 @@ const AnimChar = ({ children, ind, duration, delay }: animProps) => {
             }}
         >
             {char}
-        </motion.span>)}
-        <span> </span>
-    </span>
+        </motion.p>)}
+    </div>
 }
 
 const TextAnim = ({
@@ -74,7 +74,7 @@ const TextAnim = ({
                     delay={_delay}
                 >{split[0]}</AnimChar>)
                 i += split[0].length
-                ret.push(<br />)
+                ret.push(<div className="w-full relative" />)
 
                 ret.push(<AnimChar
                     ind={i}
@@ -91,7 +91,7 @@ const TextAnim = ({
     if (appendTime > 0)
         return null
 
-    return <div>
+    return <div className="flex gap-x-[8vh] flex-wrap justify-center h-fit">
         {parts}
     </div>
 }
