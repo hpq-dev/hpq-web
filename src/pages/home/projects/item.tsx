@@ -1,25 +1,28 @@
-import { itemProjectProps } from "./types"
+import Box3D from "@/components/model3D"
 import { motion } from 'framer-motion'
+import { itemProjectProps } from "./types"
 
 const ItemProject = ({ width, height, src }: itemProjectProps) => {
-    return <motion.div
-        whileTap={{
-            scale: .95
-        }}
-    >
-        <div
-            className="relative"
-            style={{ width: width + 'px', height: height + 'px' }}
+    return <Box3D>
+        <motion.div
+            whileTap={{
+                scale: .95
+            }}
         >
-            <img
-                className="relative w-full h-full object-contain pointer-events-none object-top"
-                width={width}
-                height={height}
-                src={src}
-                alt="projects"
-            />
-        </div>
-    </motion.div>
+            <div
+                className="relative"
+                style={{ width: width + 'px', height: height + 'px' }}
+            >
+                <img
+                    className="relative w-full h-full object-contain pointer-events-none object-top"
+                    width={width}
+                    height={height}
+                    src={src}
+                    alt="projects"
+                />
+            </div>
+        </motion.div>
+    </Box3D>
 }
 
 export default ItemProject

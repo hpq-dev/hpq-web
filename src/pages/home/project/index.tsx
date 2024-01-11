@@ -1,30 +1,42 @@
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import projects from '@/data/projects'
-import { useNavigate } from "react-router-dom"
-import { motion } from 'framer-motion'
 import Scroll from "@/components/customScroll"
+import projects from '@/data/projects'
+import { motion } from 'framer-motion'
+import { memo, useEffect, useState } from "react"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 
-import { IoClose } from "react-icons/io5";
+import { IoClose } from "react-icons/io5"
 
 const backgroundID: string = 'background_project'
 
 const Project = () => {
     const [end, setEnd] = useState<boolean>(false)
+    const [active, setActive] = useState<boolean>(false)
+
     const navigate = useNavigate()
+    const location = useLocation()
+
+
+    useEffect(() => setActive(location.pathname.includes('/project/')), [location])
+
+    console.log('procject', active)
+    if (!active)
+        return
+
     const { projectID } = useParams()
 
     const { src, images } = projects[parseInt(projectID || '0')]
+    const imgs: string[] = images ?? []
 
     const handler = () => {
         setEnd(true)
-        setTimeout(() => navigate('/'), 300);
+        setTimeout(() => {
+            navigate('/')
+            setEnd(false)
+        }, 300);
     }
 
-    const imgs: string[] = images ?? []
-
     return <motion.div
-        className="absolute left-0 top-0 w-[100vw] h-[100vh] bg-[#ffffff01] backdrop-blur-md z-[1]"
+        className="fixed left-0 top-0 w-[100vw] h-[100vh] bg-[#ffffff01] backdrop-blur-md z-[1]"
         id={backgroundID}
         animate={!end ? {
             backdropFilter: ['blur(0vh)', 'blur(2vh)'],
@@ -72,4 +84,4 @@ const Project = () => {
 
 }
 
-export default Project
+export default memo(Project)

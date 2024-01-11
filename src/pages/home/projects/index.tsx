@@ -12,7 +12,7 @@ import ItemProject from "./item"
 import { useObserverOfScroll } from "@/components/customScroll/utils"
 import { RootState } from "@/hooks"
 import { setScroll } from "@/hooks/scroll"
-import { Outlet, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 const Projects = () => {
     const [observerRef, inView] = useObserverOfScroll({ range: .5 })
@@ -115,7 +115,6 @@ const Projects = () => {
                     </Scroll>
                 </motion.div>
             </div>
-            <Outlet />
         </div>
     </SetBackground>
 }

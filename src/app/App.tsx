@@ -9,8 +9,6 @@ import { setValue } from "@/hooks/scroll";
 import { useDispatch, useSelector } from "react-redux";
 
 import Cursor from "@/components/cursor";
-import Error from "@/pages/error";
-import Home from '@/pages/home';
 
 /**
  * TODO: de pus la protofoliu 3d anim
@@ -19,25 +17,8 @@ import Home from '@/pages/home';
  */
 
 import { RootState } from "@/hooks";
-import Project from "@/pages/project";
-import {
-    createBrowserRouter,
-    RouterProvider,
-} from "react-router-dom";
-
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Home />,
-        children: [
-            {
-                path: 'project/:projectID',
-                element: <Project />
-            }
-        ],
-        errorElement: <Error />
-    }
-]);
+import Project from "@/pages/home/project";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
     soundEffect()
@@ -53,6 +34,7 @@ const App = () => {
             <Background />
             <Cursor />
             <Layout />
+            <Project />
             <div
                 className="w-full h-full relative"
                 style={{
@@ -66,7 +48,7 @@ const App = () => {
                     onPos={(props) => dispatch(setValue(props))}
                     pos={[setX, setY]}
                 >
-                    <RouterProvider router={router} />
+                    <Outlet />
                 </Scroll>
             </div>
             <Loading />
