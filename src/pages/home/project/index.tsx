@@ -18,7 +18,6 @@ const Project = () => {
 
     useEffect(() => setActive(location.pathname.includes('/project/')), [location])
 
-    console.log('procject', active)
     if (!active)
         return
 
@@ -36,7 +35,7 @@ const Project = () => {
     }
 
     return <motion.div
-        className="fixed left-0 top-0 w-[100vw] h-[100vh] bg-[#ffffff01] backdrop-blur-md z-[1]"
+        className="fixed left-0 top-0 w-[100vw] h-[100vh] bg-[#00000040] backdrop-blur-md opacity-0 z-[1]"
         id={backgroundID}
         animate={!end ? {
             backdropFilter: ['blur(0vh)', 'blur(2vh)'],

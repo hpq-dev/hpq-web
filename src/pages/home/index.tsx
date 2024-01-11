@@ -6,6 +6,8 @@ import Projects from './projects'
 
 const Index = () => {
 
+    console.log('trigger render all')
+
     return <>
         <Home />
         <About />

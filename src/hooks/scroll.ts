@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '.';
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
 import { useProcentage } from '@/util';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '.';
 
 type props = {
     x: number
@@ -41,7 +41,7 @@ const scrollSlice = createSlice({
             const [x, y] = action.payload
             state.value.setX = x
             state.value.setY = y
-        }
+        },
     }
 });
 

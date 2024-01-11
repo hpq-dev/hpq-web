@@ -1,45 +1,32 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
-import Hover1 from '@/assets/sounds/hover_0.ogg'
-import Hover2 from '@/assets/sounds/hover_1.ogg'
-import Hover3 from '@/assets/sounds/hover_2.ogg'
+import Click from '@/assets/sounds/click.wav'
+import Hover from '@/assets/sounds/hover.wav'
 
-import Click1 from '@/assets/sounds/click_0.ogg'
-import Click2 from '@/assets/sounds/click_1.ogg'
+let soundActive: boolean = false
 
+export const getSoundActive = () => soundActive
 
 const soundEffect = () => {
-    const [, setHoverID] = useState<number>(0)
-    const [, setClickID] = useState<number>(0)
-
     useEffect(() => {
         const hovers = document.querySelectorAll('.hover')
-
         const clicks = document.querySelectorAll('.click')
 
         const hoverHandler = () => {
-            setHoverID(prev => {
-                new Audio([
-                    Hover1,
-                    Hover2,
-                    Hover3
-                ][prev]).play()
-
-                prev = ++prev % 3
-                return prev
-            })
+            if(!soundActive)
+                return
+            
+            const audio = new Audio(Hover)
+            audio.volume = .1
+            audio.play()
         }
 
         const clickHandler = () => {
-            setClickID(prev => {
-                new Audio([
-                    Click1,
-                    Click2
-                ][prev]).play()
+            soundActive = true
+            const audio = new Audio(Click)
 
-                prev = ++prev % 2
-                return prev
-            })
+            audio.volume = .05
+            audio.play()
         }
 
         clicks.forEach(element =>

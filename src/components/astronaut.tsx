@@ -18,12 +18,12 @@ export default function Astronaut({ distance = 1 }: AstronautProps) {
 
     const scrollY: number = useSelector((state: RootState) => state.scroll.value.y)
 
-    const { x, y, scale, rotate} = useSelector((state: RootState) => state.astronaut.value)
+    const { x, y, scale, rotate } = useSelector((state: RootState) => state.astronaut.value)
 
     const left: number = (windowWidth * (x / 100))
     const top: number = scrollY + y
 
-    
+
     const translateX: number = getPosition(mouseX, windowWidth, distance)
     const translateY: number = getPosition(mouseY, windowHeight, distance)
 

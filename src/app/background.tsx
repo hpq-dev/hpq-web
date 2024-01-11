@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
 import { RootState } from "@/hooks"
+import { removeColor, setColor } from '@/hooks/background'
+import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
-import { setColor, removeColor } from '@/hooks/background'
 
 const Background = () => {
     const [background, setBackground] = useState<string>('#ffffff')

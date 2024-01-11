@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Cursor from "@/components/cursor";
 
 /**
- * TODO: de pus la protofoliu 3d anim
  * TODO: sa fie butoanele magnetice
  * TODO: de facut deelay cand dai click pe un proiect
  */
@@ -45,7 +44,7 @@ const App = () => {
                 <Scroll
                     touch={true}
                     scrollbar={false}
-                    onPos={(props) => dispatch(setValue(props))}
+                    onPos={(props: any) => dispatch(setValue(props))}
                     pos={[setX, setY]}
                 >
                     <Outlet />

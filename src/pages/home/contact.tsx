@@ -9,7 +9,7 @@ const Contact = () => {
         onObserver={() => dispatch(setAstronaut({
             x: 5,
             y: 200,
-            scale: 1,
+            scale: .6,
             rotate: -40
         }))}
     >

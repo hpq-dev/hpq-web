@@ -1,5 +1,6 @@
 import Box3D from "@/components/model3D"
 import { motion } from 'framer-motion'
+import { memo } from "react"
 import { itemProjectProps } from "./types"
 
 const ItemProject = ({ width, height, src }: itemProjectProps) => {
@@ -25,4 +26,4 @@ const ItemProject = ({ width, height, src }: itemProjectProps) => {
     </Box3D>
 }
 
-export default ItemProject
+export default memo(ItemProject)

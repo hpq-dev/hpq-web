@@ -80,6 +80,12 @@ export default function UseTouch({
     }, [hover, value.focus])
 
     useEffect(() => {
+        const handler = () => setMove(false)
+        document.addEventListener('mouseup', handler)
+        return () => document.removeEventListener('mouseup', handler)
+    }, [])
+
+    useEffect(() => {
         if (!set)
             return
 
