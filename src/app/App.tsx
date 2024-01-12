@@ -2,7 +2,7 @@
 import Layout from "@/app/layout";
 import Loading from "@/app/loading";
 import Scroll, { ScrollLayer } from "@/components/customScroll";
-import soundEffect from "./soundEffect";
+import soundEffect from "../components/soundEffect";
 
 import Background from "@/app/background";
 import { setValue } from "@/hooks/scroll";
@@ -24,7 +24,6 @@ const App = () => {
     soundEffect()
 
     const dispatch = useDispatch()
-
     const { setX, setY } = useSelector((state: RootState) => state.scroll.value)
 
     return <ScrollLayer>

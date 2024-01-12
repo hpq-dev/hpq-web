@@ -5,18 +5,20 @@ import { useProcentage } from "@/util"
 import useWindow from "@/util/window"
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import items from "../../../data/projects"
 import ItemProject from "./item"
 
 import { useObserverOfScroll } from "@/components/customScroll/utils"
-import store from "@/hooks"
+import store, { RootState } from "@/hooks"
 import { setScroll } from "@/hooks/scroll"
 import { useNavigate, useParams } from "react-router-dom"
 
 import FocusSound from '@/assets/sounds/focus.wav'
+import { useCursor } from "@/components/cursor"
 
 const Projects = () => {
+    const { toggle } = useSelector((state: RootState) => state.sound.value)
     const [observerRef, inView] = useObserverOfScroll({ range: .6 })
 
     const navigate = useNavigate()
@@ -49,17 +51,21 @@ const Projects = () => {
     }, [ref, projectID])
 
     useEffect(() => {
-        console.log(inView)
         if (!inView)
             return
 
         try {
+            if (!toggle)
+                return
+
             const sound = new Audio(FocusSound)
 
             sound.volume = .1
             sound.play()
         } catch { }
-    }, [inView])
+    }, [inView, toggle])
+
+    const { useCursorType } = useCursor()
 
     return <SetBackground
         color="#000"
@@ -98,13 +104,16 @@ const Projects = () => {
                     transition={{
                         duration: .5
                     }}
+                    {...useCursorType('leftright', 80)}
                 >
                     <Scroll
                         scrollbar={false}
                         touch={true}
                         onPos={({ x, maxX }) => setProgress([x, maxX])}
                     >
-                        <div className="relative h-[100vh] w-fit flex items-center pl-[40vw] max-md:pl-[60vw]">
+                        <div
+                            className="relative h-[100vh] w-fit flex items-center pl-[40vw] max-md:pl-[60vw]"
+                        >
                             <div className="relative flex flex-col flex-wrap h-full justify-center gap-[4vh]">
                                 {items.map((props, i) => {
                                     const translateX: string = i * (procent * (!(i % 2) ? .15 : .2)) + '%'
@@ -119,7 +128,7 @@ const Projects = () => {
                                             duration: .3
                                         }}
                                         onClick={() => navigate(`project/${i}`)}
-                                    >   
+                                    >
 
                                         <ItemProject
                                             {...props}

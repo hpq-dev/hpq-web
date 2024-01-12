@@ -2,12 +2,13 @@
 import { SetBackground } from "@/app/background"
 import { useCursor } from "@/components/cursor"
 import { useObserverOfScroll } from "@/components/customScroll/utils"
+import HoleEffect from "@/components/holeEffect"
 import { setAstronaut } from "@/hooks/astronaut"
 import { motion } from "framer-motion"
 import { useDispatch } from "react-redux"
 
 const About = () => {
-    const [ref, inView] = useObserverOfScroll({ range: .8})
+    const [ref, inView] = useObserverOfScroll({ range: .8 })
     const [ref2, inView2] = useObserverOfScroll({ range: .8 })
     const [ref3, inView3] = useObserverOfScroll({ range: .8 })
 
@@ -25,6 +26,10 @@ const About = () => {
         }))}
     >
         <div className='w-full pt-[40vh] pb-[10vh] relative'>
+            <HoleEffect 
+                speed={1}
+                itemSize={[10, 10]}
+            />
             <div className="w-fit m-auto relative">
                 <div className="relative flex items-end gap-4 w-full max-md:flex-wrap max-md:mb-10">
                     <div className="text-black font-bold uppercase text-5xl relative m-auto">

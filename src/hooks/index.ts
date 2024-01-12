@@ -1,15 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
-import scroll from './scroll'
+import astronaut from "./astronaut";
 import background from "./background";
 import mouse from "./mouse";
-import astronaut from "./astronaut";
+import scroll from './scroll';
+import sound from "./sound";
 
 const store = configureStore({
     reducer: {
         scroll,
         background,
         mouse,
-        astronaut
+        astronaut,
+        sound
     }
 })
 

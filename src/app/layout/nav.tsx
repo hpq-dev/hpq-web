@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
+import { RootState } from '@/hooks'
+import { setSoundToggle } from '@/hooks/sound'
 import { RandomEx } from '@/util'
+import { useDispatch, useSelector } from 'react-redux'
 import { useCursor } from '../../components/cursor'
 
 const list: string[] = [
@@ -16,9 +19,8 @@ interface props {
 
 const Nav = ({ show }: props) => {
     const [menu, setMenu] = useState<boolean>(false)
-    const [audio, setAudio] = useState<boolean>(false)
 
-    const { useCursorEvent } = useCursor()
+    const { useCursorSize } = useCursor()
 
     return <>
         <motion.div
@@ -37,7 +39,7 @@ const Nav = ({ show }: props) => {
                         scale: .8,
                         transition: { duration: .1 }
                     }}
-                    {...useCursorEvent('Menu', 100)}
+                    {...useCursorSize(40)}
                     onClick={() => setMenu(!menu)}
                 >
                     <motion.div
@@ -81,26 +83,23 @@ const Nav = ({ show }: props) => {
                     >{name}</motion.li>)}
                 </motion.ul>
             </div>
-            <Audio
-                status={audio}
-                onClick={() => setAudio(!audio)}
-            />
+            <Audio />
         </motion.div>
     </>
 }
 
 interface AudioProps {
-    status: boolean
     count?: number
-    onClick: () => void
 }
-const Audio = ({ status = false, count = 6, onClick }: AudioProps) => {
+const Audio = ({ count = 6 }: AudioProps) => {
+    const { toggle } = useSelector((state: RootState) => state.sound.value)
     const [bars, setBars] = useState<number[]>([...new Array(count)].fill(1))
+    const { useCursorSize } = useCursor()
 
-    const { useCursorEvent } = useCursor()
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        if (status) {
+        if (toggle) {
             const timer = setInterval(() => {
                 setBars(prev => {
                     prev = [...new Array(count)].map(() => RandomEx(1, 10))
@@ -110,16 +109,20 @@ const Audio = ({ status = false, count = 6, onClick }: AudioProps) => {
 
             return () => clearInterval(timer)
         } else setBars([...new Array(count)].fill(1))
-    }, [status])
+    }, [toggle])
+
+    const handler = useCallback(() => {
+        dispatch(setSoundToggle(!toggle))
+    }, [toggle])
 
     return <motion.div
         className='fixed top-16 z-[2] right-12 w-20 h-14 flex gap-1.5 items-center cursor-pointer click hover mix-blend-difference max-md:top-4 max-md:right-2'
-        onClick={onClick}
+        onClick={handler}
         whileTap={{
             scale: .8,
             transition: { duration: .2 }
         }}
-        {...useCursorEvent('Audio Toggle', 40)}
+        {...useCursorSize(40)}
     >
         {bars.map((bar, i) => <motion.div
             key={i}
@@ -130,7 +133,7 @@ const Audio = ({ status = false, count = 6, onClick }: AudioProps) => {
                 borderRadius: '10px'
             }}
             transition={{
-                duration: status ? .2 : .5
+                duration: toggle ? .2 : .5
             }}
         />)}
     </motion.div>
