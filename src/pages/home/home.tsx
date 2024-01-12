@@ -18,9 +18,9 @@ const Home = () => {
             rotate: 0
         }))}
     >
-        <div style={{ height: '100vh' }}>
+        <div style={{ height: '100vh' }} className="relative">
             <Astronaut />
-            <div className="relative text-[150px] font-pain w-full text-center pt-56 max-md:text-[80px] max-md:pt-40">
+            <div className="relative text-[150px] font-pain w-full text-center pt-32 max-md:text-[80px] max-md:pt-40">
                 <TextAnim
                     text='Hello there!\nI am web developer'
                     duration={5}
@@ -28,6 +28,14 @@ const Home = () => {
                     appendDelay={2.2}
                 />
             </div>
+            <img
+                className="w-full h-[70vh] object-cover absolute bottom-0 grayscale-[60%]"
+                style={{
+                    mask: `linear-gradient(0deg, transparent, white 20%, white 30%, transparent)`,
+                    WebkitMask: `linear-gradient(0deg, transparent, white 20%, white 30%, transparent)`
+                }}
+                src='/feature.webp'
+            />
         </div>
     </SetBackground>
 }

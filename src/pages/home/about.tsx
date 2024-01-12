@@ -37,7 +37,7 @@ const About = () => {
                         </div>
                         Lungu Ionut
                     </div>
-                    <h3 className="relative bg-gradient-to-r from-[#00000080] to-transparent inline-block text-transparent bg-clip-text text-3xl font-[500] w-fit m-auto">of 2 years experience</h3>
+                    <h3 className="relative bg-gradient-to-r from-[#00000080] to-transparent inline-block text-transparent bg-clip-text text-3xl font-[500] w-fit m-auto">with 2 years experience</h3>
                 </div>
                 <div className="relative w-[660px] max-md:w-[80%] max-w-full max-md:m-auto text-justify mt-6 text-xl font-[500] text-[#00000060]">
                     <motion.p

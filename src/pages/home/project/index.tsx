@@ -1,10 +1,10 @@
+import FocusSound from '@/assets/sounds/focus.wav'
 import Scroll from "@/components/customScroll"
 import projects from '@/data/projects'
 import { motion } from 'framer-motion'
 import { memo, useEffect, useState } from "react"
-import { useLocation, useNavigate, useParams } from "react-router-dom"
-
 import { IoClose } from "react-icons/io5"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 
 const backgroundID: string = 'background_project'
 
@@ -17,6 +17,18 @@ const Project = () => {
 
 
     useEffect(() => setActive(location.pathname.includes('/project/')), [location])
+
+    useEffect(() => {
+        if(!active)
+            return
+
+        try {
+            const sound = new Audio(FocusSound)
+
+            sound.volume = .1
+            sound.play()
+        } catch { }
+    }, [active])
 
     if (!active)
         return
@@ -34,6 +46,7 @@ const Project = () => {
         }, 300);
     }
 
+
     return <motion.div
         className="fixed left-0 top-0 w-[100vw] h-[100vh] bg-[#00000040] backdrop-blur-md opacity-0 z-[1]"
         id={backgroundID}
@@ -50,7 +63,7 @@ const Project = () => {
             scrollbar={false}
         >
             <motion.div
-                className="relative w-[4vh] h-[4vh] bg-[#ffffff20] hover:bg-[#ffffff35] transition-colors duration-300 rounded-full shadow-lg text-white text-[3vh] grid place-items-center m-auto mt-[10vh]"
+                className="relative w-[4vh] h-[4vh] bg-[#ffffff20] hover:bg-[#ffffff35] transition-colors duration-300 rounded-full shadow-lg text-white text-[3vh] grid place-items-center m-auto mt-[10vh] hover click"
                 animate={{
                     translateY: [-100, 0]
                 }}

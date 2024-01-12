@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Cursor from "@/components/cursor";
 
 /**
+ * TODO: create in about random images of about which it go in inside
  * TODO: to solved sound system and add other feature
  * TODO: to completed all projects
  */
