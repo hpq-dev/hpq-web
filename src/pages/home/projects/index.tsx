@@ -119,7 +119,7 @@ const Projects = () => {
                                             duration: .3
                                         }}
                                         onClick={() => navigate(`project/${i}`)}
-                                    >
+                                    >   
 
                                         <ItemProject
                                             {...props}

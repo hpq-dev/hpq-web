@@ -11,8 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Cursor from "@/components/cursor";
 
 /**
- * TODO: sa fie butoanele magnetice
- * TODO: de facut deelay cand dai click pe un proiect
+ * TODO: to solved sound system and add other feature
+ * TODO: to completed all projects
  */
 
 import { RootState } from "@/hooks";
