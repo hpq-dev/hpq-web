@@ -43,7 +43,7 @@ const Project = () => {
 
         const { projectID } = useParams()
 
-        const { src, images } = projects[parseInt(projectID || '0')]
+        const { src, images, title, description } = projects[parseInt(projectID || '0')]
         const imgs: string[] = images ?? []
 
         const handler = () => {
@@ -83,13 +83,13 @@ const Project = () => {
                     <IoClose />
                 </motion.div>
                 <div className="relative w-[120vh] pt-[20vh] m-auto h-[300vh]">
-                    <h1 className="text-[12vh] font-pain whitespace-nowrap absolute mix-blend-difference text-white -translate-y-1/2">EGYPT AND WORLD</h1>
-                    <div className="flex gap-[2vh] text-justify">
+                    <h1 className="text-[12vh] font-pain whitespace-nowrap absolute mix-blend-difference text-white -translate-y-1/2 text-center w-full">{title}</h1>
+                    <div className="flex gap-[2vh] text-justify mt-[3vh]">
                         <img
                             className="pointer-events-none"
                             src={src}
                         />
-                        <p className="text-white mt-[6vh]">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <p className="text-white mt-[6vh] leading-8">{description}</p>
                     </div>
                     <div className="overflow-hidden mt-[16vh] w-full flex flex-wrap justify-around gap-[3vh]">
                         {imgs.map((img, i) => <img

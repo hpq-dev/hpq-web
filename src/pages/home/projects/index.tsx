@@ -18,7 +18,7 @@ import FocusSound from '@/assets/sounds/focus.wav'
 import { useCursor } from "@/components/cursor"
 import ParticleEffect from "@/components/effects/particle"
 
-const Projects = ({}, _ref: Ref<HTMLDivElement>) => {
+const Projects = ({ }, _ref: Ref<HTMLDivElement>) => {
     const { toggle } = useSelector((state: RootState) => state.sound.value)
     const [observerRef, inView] = useObserverOfScroll({ range: .6 })
     const [ref, inZoneView] = useObserverOfScroll({ range: 1 })
@@ -45,10 +45,12 @@ const Projects = ({}, _ref: Ref<HTMLDivElement>) => {
         if (!parent)
             return
 
-        const { top } = parent.getBoundingClientRect()
-        const { y } = store.getState().scroll.value
+        setTimeout(() => {
+            const { top } = parent.getBoundingClientRect()
+            const { y } = store.getState().scroll.value
 
-        dispatch(setScroll([0, y + top + 30]))
+            dispatch(setScroll([0, y + top + 30]))
+        }, 1000);
     }, [ref, projectID])
 
     useEffect(() => {
@@ -89,9 +91,9 @@ const Projects = ({}, _ref: Ref<HTMLDivElement>) => {
                         opacity: 1 - (progress[0] / (innerWidth * .2)),
                         transform: `scale(${1 - (progress[0] / (innerWidth * .6))})`
                     }}>
-                        <h1 className="font-bold mb-[10px]">NEXT FEATURE</h1>
-                        <p className="relative text-justify w-[240px] m-auto">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                        <h1 className="font-bold mb-[10px] text-[20px]">My Excellence Showcase</h1>
+                        <p className="relative text-justify w-[240px] m-auto text-[#ffffff80]">
+                            Embark on a journey through my projects, where innovation meets functionality. From concept to execution, witness the art of crafting seamless digital solutions for a transformative user experience.
                         </p>
                     </div>
                     <motion.div
@@ -134,7 +136,12 @@ const Projects = ({}, _ref: Ref<HTMLDivElement>) => {
                                             transition={{
                                                 duration: .3
                                             }}
-                                            onClick={() => navigate(`project/${i}`)}
+                                            onClick={() => {
+                                                if (props.link == undefined)
+                                                    navigate(`project/${i}`)
+
+                                                else window.open(props.link, "_blank");
+                                            }}
                                         >
 
                                             <ItemProject

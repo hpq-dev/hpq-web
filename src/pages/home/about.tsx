@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 import { Ref, forwardRef } from "react"
 import { useDispatch } from "react-redux"
 
-const About = ({}, _ref: Ref<HTMLDivElement>) => {
+const About = ({ }, _ref: Ref<HTMLDivElement>) => {
     const [ref, inView] = useObserverOfScroll({ range: .8 })
     const [ref2, inView2] = useObserverOfScroll({ range: .8 })
     const [ref3, inView3] = useObserverOfScroll({ range: .8 })
@@ -30,7 +30,14 @@ const About = ({}, _ref: Ref<HTMLDivElement>) => {
                 speed={1}
                 items={[
                     '/about/0.png',
-                    '/about/1.png'
+                    '/about/1.png',
+                    '/about/2.png',
+                    '/about/3.png',
+                    '/about/4.png',
+                    '/about/5.png',
+                    '/about/6.png',
+                    '/about/7.png',
+                    '/about/8.png'
                 ]}
             />
             <div className="w-fit m-auto relative pr-[288px] max-lg:pr-0">
@@ -62,10 +69,7 @@ const About = ({}, _ref: Ref<HTMLDivElement>) => {
                             }}
                             {...useCursorEvent('- 07 2023', 30)}
                         >
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                            into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                            passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            Hey there! I'm Ionut, a passionate web developer based in Romania. With a love for web development, I've been immersed in the dynamic world of freelancing for the past 2 years, collaborating with a diverse range of clients, including noteworthy projects like b-hood.ro.
                         </motion.p>
                     </div>
                     <div className="w-fit h-fit relative" ref={ref2}>
@@ -83,10 +87,9 @@ const About = ({}, _ref: Ref<HTMLDivElement>) => {
                             className="mt-6"
                             {...useCursorEvent('- 04 2023', 30)}
                         >
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                            into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                            passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            In my journey as a freelancer, I've thrived in navigating through ambiguity, finding joy in the challenge of bringing success to both products and the people behind them. From coding elegant solutions to troubleshooting complex issues, I find fulfillment in every step of the web development process.
+                            <br /><br />
+                            Living, working, and learning in Romania has provided me with a unique perspective, blending my cultural background with my technical skills. I believe in the power of technology to connect people and enhance experiences.
                         </motion.p>
                     </div>
                     <div className="w-fit h-fit relative" ref={ref3}>
@@ -104,10 +107,9 @@ const About = ({}, _ref: Ref<HTMLDivElement>) => {
                             className="mt-6"
                             {...useCursorEvent('- 01 2023', 30)}
                         >
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                            into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                            passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            Outside of coding, you can often find me exploring the latest trends in web development, always eager to expand my skill set. I enjoy taking on new challenges that push my boundaries and contribute to my continuous growth as a developer.
+                            <br /><br />
+                            If you're curious to learn more or discuss potential collaborations, feel free to reach out at qclashofclans86@gmail.com. Let's chat and explore the exciting possibilities together!
                         </motion.p>
                     </div>
                 </div>

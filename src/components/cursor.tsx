@@ -12,14 +12,12 @@ import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io"
 const Cursor = () => {
     const [mouseX, mouseY] = useMouse()
     const { size } = useSelector((state: RootState) => state.mouse.value)
-    const [leftClick] = useMouseClick()
 
     return <motion.div
         className="fixed w-fit z-10 pointer-events-none flex items-center mix-blend-difference max-md:opacity-0"
         animate={{
             translateX: mouseX - (size / 2),
-            translateY: mouseY - (size / 2),
-            scale: leftClick ? .5 : 1
+            translateY: mouseY - (size / 2)
         }}
     >
         <InsideCursor />
@@ -33,12 +31,15 @@ const InsideCursor = memo(() => {
         type
     } = useSelector((state: RootState) => state.mouse.value)
 
+    const [leftClick] = useMouseClick()
+
     return <>
         <motion.div
             className='relative w-6 h-6 border-2 border-white rounded-full overflow-hidden pointer-events-none'
             animate={{
                 width: size,
-                height: size
+                height: size,
+                scale: leftClick ? .5 : 1
             }}
         >
             {type !== 'normal' && <>

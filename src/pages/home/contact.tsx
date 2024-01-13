@@ -3,8 +3,12 @@ import { setAstronaut } from "@/hooks/astronaut"
 import { Ref, forwardRef } from "react"
 import { useDispatch } from "react-redux"
 
-const Contact = ({}, ref: Ref<HTMLDivElement>) => {
+const Contact = ({ }, ref: Ref<HTMLDivElement>) => {
     const dispatch = useDispatch()
+
+
+    const subject = encodeURIComponent('I am interested of you service');
+    const body = encodeURIComponent(`Example:\nName: John\nEmail: john@example.com\nDescription: I need your service.`);
 
     return <SetBackground
         onObserver={() => dispatch(setAstronaut({
@@ -35,15 +39,17 @@ const Contact = ({}, ref: Ref<HTMLDivElement>) => {
                             </button>
                         </div>
                         <p className="w-96 text-justify mt-5 text-[#ffffff70] leading-8 text-1xl max-md:w-full">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            {`Hello! I am a highly experienced web developer dedicated to crafting sophisticated and efficient web applications. With a strong foundation in both development and design, I approach each project with precision and creativity. My expertise covers a wide spectrum of web technologies, guaranteeing state-of-the-art solutions. Whether you need a stylish website, a robust e-commerce platform, or a complex application, I am passionate about delivering excellence in user experience. Let's connect and explore how we can enhance your digital presence. Feel free to reach out – I am here to turn your ideas into compelling and functional realities!`}
                         </p>
                     </div>
                 </div>
 
                 <div className="w-full flex justify-center mt-32">
-                    <button className="text-[#ffffff50] font-pain text-2xl px-10 py-2 rounded-2xl bg-[#ffffff20] backdrop-blur-[6px] border-2 border-[#ffffff40] m-auto hover:bg-[#ffffff40] hover:text-[#ffffff80] transition-colors duration-300 mb-64">
-                        Let's work together
-                    </button>
+                    <a href={`https://mail.google.com/mail/u/0/?view=cm&fs=1&to=qclashofclans86@gmail.com&su=${subject}&body=${body}`} target="_blank">
+                        <button className="text-[#ffffff50] font-pain text-2xl px-10 py-2 rounded-2xl bg-[#ffffff20] backdrop-blur-[6px] border-2 border-[#ffffff40] m-auto hover:bg-[#ffffff40] hover:text-[#ffffff80] transition-colors duration-300 mb-64">
+                            Let's work together
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
