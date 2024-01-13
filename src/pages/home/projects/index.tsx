@@ -4,7 +4,7 @@ import { setAstronaut } from "@/hooks/astronaut"
 import { useProcentage } from "@/util"
 import useWindow from "@/util/window"
 import { motion } from 'framer-motion'
-import { useEffect, useRef, useState } from "react"
+import { Ref, forwardRef, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import items from "../../../data/projects"
 import ItemProject from "./item"
@@ -16,10 +16,12 @@ import { useNavigate, useParams } from "react-router-dom"
 
 import FocusSound from '@/assets/sounds/focus.wav'
 import { useCursor } from "@/components/cursor"
+import ParticleEffect from "@/components/effects/particle"
 
-const Projects = () => {
+const Projects = ({}, _ref: Ref<HTMLDivElement>) => {
     const { toggle } = useSelector((state: RootState) => state.sound.value)
     const [observerRef, inView] = useObserverOfScroll({ range: .6 })
+    const [ref, inZoneView] = useObserverOfScroll({ range: 1 })
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -27,7 +29,6 @@ const Projects = () => {
     const [innerWidth] = useWindow()
     const { projectID } = useParams()
 
-    const ref = useRef<HTMLDivElement | null>(null)
     const [progress, setProgress] = useState<[number, number]>([0, 0])
 
     let procent: number = (40 - useProcentage(progress[0], progress[1]))
@@ -60,7 +61,7 @@ const Projects = () => {
 
             const sound = new Audio(FocusSound)
 
-            sound.volume = .1
+            sound.volume = .3
             sound.play()
         } catch { }
     }, [inView, toggle])
@@ -78,70 +79,92 @@ const Projects = () => {
             }))
         }}
     >
-        <div
-            className="relative w-full overflow-hidden h-auto py-[20vh]"
-            ref={ref}
-        >
-            <div className="relative w-full h-[100vh] flex items-center">
-                <div className="text-white w-[40vw] text-center absolute left-0 max-md:left-4" style={{
-                    opacity: 1 - (progress[0] / (innerWidth * .2)),
-                    transform: `scale(${1 - (progress[0] / (innerWidth * .6))})`
-                }}>
-                    <h1 className="font-bold mb-[1vh]">NEXT FEATURE</h1>
-                    <p className="relative text-justify w-[24vh] m-auto">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                    </p>
-                </div>
-                <motion.div
-                    ref={observerRef}
-                    animate={!inView ? {
-                        opacity: 0,
-                        translateX: '20vw'
-                    } : {
-                        opacity: 1,
-                        translateX: '0vw'
-                    }}
-                    transition={{
-                        duration: .5
-                    }}
-                    {...useCursorType('leftright', 80)}
-                >
-                    <Scroll
-                        scrollbar={false}
-                        touch={true}
-                        onPos={({ x, maxX }) => setProgress([x, maxX])}
+        <div className="w-fit h-fit relative" ref={_ref}>
+
+            <div
+                className="relative w-full overflow-hidden h-auto py-[200px]"
+            >
+                <div className="relative w-full h-[1080px] flex items-center" ref={ref}>
+                    <div className="text-white w-[40vw] text-center absolute left-0 max-md:left-4" style={{
+                        opacity: 1 - (progress[0] / (innerWidth * .2)),
+                        transform: `scale(${1 - (progress[0] / (innerWidth * .6))})`
+                    }}>
+                        <h1 className="font-bold mb-[10px]">NEXT FEATURE</h1>
+                        <p className="relative text-justify w-[240px] m-auto">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                        </p>
+                    </div>
+                    <motion.div
+                        className="w-full h-full relative"
+                        style={{
+                            mask: `linear-gradient(90deg, transparent, white 10%, white 90%, transparent)`,
+                            WebkitMask: `linear-gradient(90deg, transparent, white 10%, white 90%, transparent)`
+                        }}
+                        ref={observerRef}
+                        animate={!inView ? {
+                            opacity: 0,
+                            translateX: '20vw'
+                        } : {
+                            opacity: 1,
+                            translateX: '0vw'
+                        }}
+                        transition={{
+                            duration: .5
+                        }}
+                        {...useCursorType('leftright', 80)}
                     >
-                        <div
-                            className="relative h-[100vh] w-fit flex items-center pl-[40vw] max-md:pl-[60vw]"
+                        {inZoneView && <Scroll
+                            scrollbar={false}
+                            touch={true}
+                            onPos={({ x, maxX }) => setProgress([x, maxX])}
                         >
-                            <div className="relative flex flex-col flex-wrap h-full justify-center gap-[4vh]">
-                                {items.map((props, i) => {
-                                    const translateX: string = i * (procent * (!(i % 2) ? .15 : .2)) + '%'
+                            <div
+                                className="relative h-[1080px] w-fit flex items-center pl-[40vw] max-md:pl-[60vw]"
+                            >
+                                <div className="relative flex flex-col flex-wrap h-full justify-center gap-[40px]">
+                                    {items.map((props, i) => {
+                                        const translateX: string = i * (procent * (!(i % 2) ? .15 : .2)) + '%'
 
-                                    return <motion.div
-                                        className="hover click"
-                                        key={i}
-                                        animate={window.innerWidth > 700 && {
-                                            translateX
-                                        } || {}}
-                                        transition={{
-                                            duration: .3
-                                        }}
-                                        onClick={() => navigate(`project/${i}`)}
-                                    >
+                                        return <motion.div
+                                            className="hover click"
+                                            key={i}
+                                            animate={window.innerWidth > 700 && {
+                                                translateX
+                                            } || {}}
+                                            transition={{
+                                                duration: .3
+                                            }}
+                                            onClick={() => navigate(`project/${i}`)}
+                                        >
 
-                                        <ItemProject
-                                            {...props}
-                                        />
-                                    </motion.div>
-                                })}
+                                            <ItemProject
+                                                {...props}
+                                            />
+                                        </motion.div>
+                                    })}
+                                </div>
                             </div>
-                        </div>
-                    </Scroll>
-                </motion.div>
+                        </Scroll>}
+                    </motion.div>
+                </div>
+                <ParticleEffect
+                    className="w-full h-full absolute top-0 left-0"
+                />
             </div>
+            <motion.img
+                className="absolute left-0 bottom-[300px] -translate-x-1/2 translate-y-1/2 z-[-1]"
+                animate={{
+                    transform: [`translate(-70%, 0%) rotate(0deg)`, `translate(-70%, 0%) rotate(360deg)`]
+                }}
+                transition={{
+                    type: 'tween',
+                    duration: 120,
+                    repeat: Infinity
+                }}
+                src='/planet.png'
+            />
         </div>
     </SetBackground>
 }
 
-export default Projects
+export default forwardRef(Projects)

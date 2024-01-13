@@ -55,7 +55,7 @@ export default function Astronaut({ distance = 1 }: AstronautProps) {
         }}
     >
         <img
-            className='relative h-[70vh]'
+            className='relative h-[700px]'
             src={'/astronaut.svg'}
             alt="astronaut"
         />

@@ -2,7 +2,7 @@
 import Layout from "@/app/layout";
 import Loading from "@/app/loading";
 import Scroll, { ScrollLayer } from "@/components/customScroll";
-import soundEffect from "../components/soundEffect";
+import soundEffect from "../components/effects/sound";
 
 import Background from "@/app/background";
 import { setValue } from "@/hooks/scroll";
@@ -35,7 +35,7 @@ const App = () => {
             <Layout />
             <Project />
             <div
-                className="w-full h-full relative"
+                className="w-full h-full relative max-w-[1920px] m-auto"
                 style={{
                     mask: `linear-gradient(0deg, transparent, white 20%, white 80%, transparent)`,
                     WebkitMask: `linear-gradient(0deg, transparent, white 20%, white 80%, transparent)`

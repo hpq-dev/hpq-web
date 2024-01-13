@@ -33,7 +33,7 @@ const Project = () => {
 
                 const sound = new Audio(FocusSound)
 
-                sound.volume = .1
+                sound.volume = .3
                 sound.play()
             } catch { }
         }, [active, toggle])
@@ -92,9 +92,10 @@ const Project = () => {
                         <p className="text-white mt-[6vh]">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                     </div>
                     <div className="overflow-hidden mt-[16vh] w-full flex flex-wrap justify-around gap-[3vh]">
-                        {imgs.map((img) => <img
+                        {imgs.map((img, i) => <img
                             className="w-[48%] pointer-events-none"
                             src={img}
+                            key={i}
                             alt="project"
                         />)}
                     </div>

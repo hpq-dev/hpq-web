@@ -1,8 +1,9 @@
 import { SetBackground } from "@/app/background"
 import { setAstronaut } from "@/hooks/astronaut"
+import { Ref, forwardRef } from "react"
 import { useDispatch } from "react-redux"
 
-const Contact = () => {
+const Contact = ({}, ref: Ref<HTMLDivElement>) => {
     const dispatch = useDispatch()
 
     return <SetBackground
@@ -13,7 +14,7 @@ const Contact = () => {
             rotate: -40
         }))}
     >
-        <div className="relative w-full flex h-fit justify-center items-center">
+        <div className="relative w-full flex h-fit justify-center items-center pt-[20vh]" ref={ref}>
             <img
                 className="w-full h-auto absolute bottom-0 pointer-events-none object-cover z-[-1] max-md:h-[50vh] max-md:w-auto"
                 src="/contact.bg.webp"
@@ -49,4 +50,4 @@ const Contact = () => {
     </SetBackground>
 }
 
-export default Contact
+export default forwardRef(Contact)

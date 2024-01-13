@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { useCallback, useEffect, useState } from 'react'
 
 import { RootState } from '@/hooks'
+import { setMouseRoot } from '@/hooks/mouse'
 import { setSoundToggle } from '@/hooks/sound'
 import { RandomEx } from '@/util'
 import { useDispatch, useSelector } from 'react-redux'
@@ -18,9 +19,14 @@ interface props {
 }
 
 const Nav = ({ show }: props) => {
+    const dispatch = useDispatch()
     const [menu, setMenu] = useState<boolean>(false)
-
     const { useCursorSize } = useCursor()
+
+    const handler = (root: string) => {
+        dispatch(setMouseRoot(root))
+        setMenu(false)
+    }
 
     return <>
         <motion.div
@@ -80,6 +86,7 @@ const Nav = ({ show }: props) => {
                             scale: 1.1,
                             transition: { duration: .1 }
                         }}
+                        onClick={() => handler(name)}
                     >{name}</motion.li>)}
                 </motion.ul>
             </div>

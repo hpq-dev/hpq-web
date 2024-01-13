@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const useWindow = (): [number, number] => {
     const [size, setSize] = useState<[number, number]>([0, 0])
@@ -18,5 +18,8 @@ const useWindow = (): [number, number] => {
 
     return size
 }
+
+export const VH = (procent: number) => window.innerHeight * (procent / 100)
+export const VW = (procent: number) => window.innerWidth * (procent / 100)
 
 export default useWindow
